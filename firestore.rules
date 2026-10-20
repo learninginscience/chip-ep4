@@ -2,12 +2,12 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // 一場比賽＝一個房間（4 位數代碼）。只有開房的老師能改狀態或刪除。
+    // 一場比賽＝一個房間（4 位數代碼）。只有開房的老師能改狀態（等待／進行中／暫停／結束）或刪除。
     match /rooms/{pin} {
       function roomOk(d) {
-        return d.keys().hasOnly(['host', 'status', 'createdAt', 'startedAt', 'endedAt'])
+        return d.keys().hasOnly(['host', 'status', 'createdAt', 'startedAt', 'endedAt', 'pausedAt', 'pausedMs'])
           && d.host == request.auth.uid
-          && d.status in ['lobby', 'playing', 'ended']
+          && d.status in ['lobby', 'playing', 'paused', 'ended']
           && d.createdAt is int;
       }
       allow read: if request.auth != null;

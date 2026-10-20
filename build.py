@@ -47,8 +47,8 @@ def page(src, desc):
 game = fill(read('game.src.html'))
 teacher = fill(read('teacher.src.html'))
 with open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8', newline='\n') as f:
-    f.write(page(game, '晶片系列 EP4 時空任務：跟著晶片小八回到 1958 年，幫科學家解決難題，親手組裝一顆晶片。'))
+    f.write(page(game, '晶片系列 EP4 課堂活動：用兩位科學家的想法，親手設計出阿寶的晶片。'))
 with open(os.path.join(ROOT, 'teacher.html'), 'w', encoding='utf-8', newline='\n') as f:
-    f.write(page(teacher, '導線走線大師老師投影頁：開房間、即時排行榜、頒獎台。'))
+    f.write(page(teacher, '導線走線大師老師投影頁：開房間、即時排行榜、暫停、頒獎台。'))
 print('組建完成：index.html', os.path.getsize(os.path.join(ROOT, 'index.html')) // 1024, 'KB，teacher.html',
       os.path.getsize(os.path.join(ROOT, 'teacher.html')) // 1024, 'KB，Firebase', '已連線' if cfg != 'null' else '未設定')

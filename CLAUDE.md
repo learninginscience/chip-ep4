@@ -6,6 +6,7 @@
 
 - 學生畫面：https://pxchen-89.github.io/chip-ep4/
 - 老師投影頁：https://pxchen-89.github.io/chip-ep4/teacher.html
+- 直接玩版：https://pxchen-89.github.io/chip-ep4/play.html （打開就是第一關，不登記名字、沒有房間、不上傳資料）
 - 對象：國小高年級，用平板或手機。
 - 教學目標（簡報第 3 頁）：晶片的結構是先在一塊半導體材料上做出所有需要的電子零件，接著在上面一層一層地蓋出讓電子零件彼此連接的導線。
 - **定位**：這個活動取代 EP4 影片版簡報第 48 頁的「假設」提問（「晶片的結構會長怎樣？」），玩完接第 49 頁老師統整。不是課後評量，也不是擴充新內容。
@@ -16,12 +17,13 @@
 |---|---|
 | `src/game.src.html` | 學生端原始檔（關卡、接線引擎、組裝晶片、單人與房間模式、暫停／結束畫面） |
 | `src/teacher.src.html` | 老師投影頁原始檔（開房間、大廳、即時排行榜、暫停／繼續、頒獎台、各題統計、下載 Excel） |
+| `src/play_boot.js` | 直接玩版的啟動程式：組建時取代學生頁最後的 `renderStart();`，進度改存 sessionStorage |
 | `src/live_core.js` | 兩頁共用的即時房間核心（Firebase 正式模式＋`?mock=1` 測試模式） |
 | `src/firebase_config.json` | Firebase 網頁設定（公開資訊，不是密碼） |
 | `src/chars/*.jpg` | 角色圖，取自 EP4 影片畫面 |
 | `firestore.rules` | Firestore 安全規則的正本（改了要到 Firebase 主控台重新發布） |
-| `build.py` | 組建：把 src 組成根目錄的 `index.html`、`teacher.html` |
-| `index.html`、`teacher.html` | **組建產物，不要手改**，GitHub Pages 直接發布這兩個檔 |
+| `build.py` | 組建：把 src 組成根目錄的 `index.html`、`teacher.html`、`play.html` |
+| `index.html`、`teacher.html`、`play.html` | **組建產物，不要手改**，GitHub Pages 直接發布這三個檔。`play.html` 和 `index.html` 用同一份 `game.src.html`，改關卡或題目兩邊會一起變 |
 | `tools/solver.py` 等 | 關卡驗證用的窮舉程式（最少層數、最短導線） |
 | `docs/活動說明.md` | 課堂流程、估計時間、計分與正確答案 |
 | `docs/開發紀錄.md` | 歷次改動與原因（避免把被否決的做法做回去） |
